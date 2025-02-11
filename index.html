@@ -1,191 +1,64 @@
 <!DOCTYPE html>
 <html lang="cn">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="renderer" content="webkit" />
-<title>小游戏</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="Robin Liu">
-<link rel="shortcut icon" href="https://haiyong.site/img/favicon.png">
-<link href="https://haiyong.site/doc/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://haiyong.site/doc/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="https://haiyong.site/doc/css/font-awesome.min.css" rel="stylesheet">
-<link href="https://haiyong.site/doc/css/doc.css" rel="stylesheet">
-<script src="https://haiyong.site/doc/js/jquery.min.js"></script>
-<script src="https://haiyong.site/doc/js/bootstrap.min.js"></script>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?a9430a37066911650e26adadcc42798a";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-//禁用操作
-
-window.onload = function(){
-    document.onkeydown = function (){
-        var e = window.event || arguments[0];
-        //F12
-        if(e.keyCode == 123){
-            return false;
-        //Ctrl+Shift+I
-        }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
-            return false;
-        //Ctrl+Shift+C
-        }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 67)){
-            return false;
-        //Shift+F10
-        }else if((e.shiftKey) && (e.keyCode == 121)){
-            return false;
-        //Ctrl+U
-        }else if((e.ctrlKey) && (e.keyCode == 85)){
-            return false;
-        //Ctrl+S
-        }else if((e.ctrlKey) && (e.keyCode == 83)){
-        return false;
-    }
-};
-    document.oncontextmenu = function (){
-        return false;
-    }
-}
-
-//禁止复制
-document.onselectstart=new Function('event.returnValue=false;');
-
-//禁止选择文字
-document.body.onselectstart = function() {
-    self.event.returnValue=false
-  };
-
-//操作提示
-
-((function() {
-    var callbacks = [],
-    timeLimit = 50,
-    open = false;
-    setInterval(loop, 1);
-    return {
-        addListener: function(fn) {
-            callbacks.push(fn);
-        },
-        cancleListenr: function(fn) {
-            callbacks = callbacks.filter(function(v) {
-                return v !== fn;
-            });
-        }
-    }
-    function loop() {
-        var startTime = new Date();
-        debugger;
-        if (new Date() - startTime > timeLimit) {
-            if (!open) {
-                callbacks.forEach(function(fn) {
-                    fn.call(null);
-                });
-            }
-            open = true;
-            window.stop();
-            alert('不要扒我了');
-            window.location.reload();
-            window.location.href='./firewall.php';
-
-            
-        } else {
-            open = false;
-        }
-    }
-})()).addListener(function() {
-    window.location.reload();
-});
-
-//检测控制台是否开启
-var h = window.innerHeight,w=window.innerWidth;
-window.onresize = function () {
-if (h!= window.innerHeight||w!=window.innerWidth){
-    window.close();
-    window.location = "about:blank";}
-}
-</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>小游戏</title>
+	<link href="https://haiyong.site/doc/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://haiyong.site/doc/css/font-awesome.min.css" rel="stylesheet">
+	<style>
+		body {
+			background-image: url('static/痛仰1.jpeg'); /* Add your background image here */
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			font-family: Arial, sans-serif;
+		}
+		.game-container {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			gap: 16px;
+			padding: 20px;
+		}
+		.game-card {
+			background-color: #fff;
+			border-radius: 8px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			text-align: center;
+			overflow: hidden;
+			transition: transform 0.3s ease;
+			text-decoration: none;
+			color: inherit;
+		}
+		.game-card:hover {
+			transform: translateY(-10px);
+		}
+		.game-icon {
+			width: 100%;
+			height: 150px;
+			background-size: cover;
+			background-position: center;
+		}
+		.game-title {
+			padding: 10px;
+			font-size: 16px;
+			font-weight: bold;
+			background-color: #f8f8f8;
+			border-top: 1px solid #e0e0e0;
+		}
+	</style>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
-<div class="container-fluid">
-</div>
-</nav>
-
-<div class="container bs-docs-container">
-<div class="row">
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-<h3><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> 游戏案例一</h3>
-<ul>
-	<li><a href="JSchuangguanxiaoyouxi/index.html">JS闯关小游戏 </a></li>
-	<li><a href="aichuifengdexiaoshizi/index.html">爱吹风的小狮子 </a></li>
-	<li><a href="dmtjd/index.html">地面突击队 </a></li>
-	<li><a href="gaitalou/index.html">盖塔楼 </a></li>
-	<li><a href="qiefangkuai/index.html">切方块 </a></li>
-	<li><a href="sanzhixiaoji/index.html">三只小鸡 </a></li>
-	<li><a href="shaizi/index.html">构建骰子 </a></li>
-	<li><a href="shasiguowang/index.html">杀死国王 </a></li>
-	<li><a href="shengdanlaorenguoqiao/index.html">圣诞老人过桥 </a></li>
-	<li><a href="shitoujiandaobu/index.html">石头剪刀布 </a></li>
-	<li><a href="xiangyingshi2048xiaoyouxi/index.html">2048 </a></li>
-	<li><a href="xiaobawangyouxiji/index.html">小霸王游戏机 </a></li>
-	<li><a href="zhipaijiyi/index.html">纸牌记忆 </a></li>
-	<li><a href="zhongguoxiangqi/index.html">中国象棋游戏 </a></li>
-
-</ul>
-</div>
-
-<hr>
-<script>
-				var tedu="http://doc.tedu.cn/s/";
-				var robin="https://robinliu.3322.org:8888/";
-				var host = location.host;
-				$('a').click(function(){
-					if(!this.href){
-						return;
-					}
-					var text = $(this).text();
-					var href = this.href;
-					console.log('Click:'+href);
-					console.log('text:'+text);
-					if(host == 'doc.tedu.cn'){
-						if(text=="百度云盘"){
-							alert('内网不支持 [百度云盘]');
-							return false;
-						}
-						if(text=="官网下载"){
-							var file = href.substring(href.lastIndexOf('/'));
-							//console.log('file:'+file);
-							href = tedu+"download"+file;
-							console.log("转向新地址："+href);
-							location.href = href;
-							return false;
-						}
-						if(text=="下载链接"){
-							href = href.replace(robin, tedu);
-							console.log("转向新地址："+href);
-							location.href = href;
-							return false;
-						}	
-					}
-				});
-			</script>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3811349067654166"
-			crossorigin="anonymous"></script>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4SMJL64ZE"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'G-X4SMJL64ZE');
-	</script>
+<div class="game-container">
+	<a href="JSchuangguanxiaoyouxi/index.html" class="game-card">
+		<div class="game-icon" style="background-image: url('JSchuangguanxiaoyouxi/js闯关1.jpg');"></div>
+		<div class="game-title">JS闯关小游戏</div>
+	</a>
+	<a href="aichuifengdexiaoshizi/index.html" class="game-card">
+		<div class="game-icon" style="background-image: url('image-path-2.jpg');"></div>
+		<div class="game-title">爱吹风的小狮子</div>
+	</a>
+	<!-- Repeat for other games -->
 </div>
 </body>
 </html>
-
