@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>地面突击队Rogue One: Boots on the Ground</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="js/libs/pixi/pixi.js"></script>
+<script src="js/libs/pixi/pixi-spine.js"></script>
+<script src="js/libs/pixi/pixi-ext.js"></script>
+<script src="js/libs/pixi-particles.js"></script>
+<script src="js/libs/p2/p2.js"></script>
+<script src="js/libs/signals.min.js"></script>
+<script src="js/libs/greensock/TweenMax.min.js"></script>
+<script src="js/libs/howler.min.js"></script>
+<script src="js/libs/bowser/bowser.min.js"></script>
+<script src="js/libs/SAT.js"></script>
+<script src="js/libs/binary.heap.js"></script>
+<script src="js/libs/jquery-2.1.4.min.js"></script>
+<script src="p3.min.js"></script>
+<script src="bundle.min.js"></script>
+<script src="gameConfig/isl.js"></script>
+<meta name="apple-mobile-web-app-title" content="地面突击">
+<meta name="application-name" content="地面突击">
+<meta name="keywords" content="地面突击" />
+<meta name="description" content="地面突击" />
+<link rel="apple-touch-icon" href="icon.png" />
+<link rel="shortcut icon" href="icon.png" />
+<link rel="icon" href="icon.png" />
+<style>
+body {
+background-image: none;
+background-color: #000000;
+}
+#game {
+position: absolute;
+width: 100%;
+height: 100%;
+}
+
+</style>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?a9430a37066911650e26adadcc42798a";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+<script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"JxVJPIpe3UAQqoDx",ck:"JxVJPIpe3UAQqoDx"})</script>
+<!-- 谷歌广告 -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7056167681359419" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="game"></div>
+<script>
+if ($("html").hasClass("ie") || (Function("/*@cc_on return document.documentMode===10@*/")())) {
+var nowebgl = $("<div />").attr({
+"id": "nowebgl"
+}).css({
+"width": "100%",
+"height": "100%",
+"background-position": "50% 50%",
+"background-repeat": "no-repeat",
+"background-image": "url('./unsupported.jpg')",
+"background-color": "#000000",
+"background-size": "auto 100%"
+}).appendTo("#game");
+} else {
+var language = "en";
+var main = new Main(1024, 768);
+//runISL(main);
+main.init();
+}		
+</script>
+</body>
+</html>
