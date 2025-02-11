@@ -1,17 +1,4 @@
-## 1000个摸鱼小游戏  
 
-源码暂时还没整理完，需要可联系我：[海拥](https://haiyong.site/about)
-- 微信：[wh18363](https://haiyong.site/img/qrcode/weixin.png)
-- QQ: 1836360247
-
-1000个摸鱼游戏、工具源码集合及在线演示（更新中）：
-[https://game.haiyong.site/](https://game.haiyong.site/)
-
-
-## 海拥摸鱼小游戏
-
-在线地址（持续更新中）：[https://haiyong.site/moyu](https://haiyong.site/moyu)
-源码可联系站长获取
 
 ⭐️ 星标为热门小游戏
 
