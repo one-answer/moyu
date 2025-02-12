@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" manifest="http://www.sinuousgame.com/cache.manifest">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+  <meta name="description"
+    content="A free game where your goal is to dodge red enemies, stay alive for as long as possible and gain high scores. Sounds simple, eh? If only... Give it a try!">
+  <meta name="keywords"
+    content="html5, game, sinuous, hakim, elhattab, hakim el hattab, hakim elhattab, interactive, developer, flash, html5, canvas, web, experiments">
+  <meta name="author" content="Hakim El Hattab">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width = 450">
+
+  <meta property="og:image" content="http://www.sinuousgame.com/assets/images/icon_512.png" />
+
+  <title>避开红点</title>
+
+  <script type="text/javascript">
+    if (navigator.userAgent.match(/iphone|ipad|ipod/gi)) window.location = '/mobile';
+
+    var sc = 8739;
+
+    var FACEBOOK_MODE = false;
+  </script>
+  <link type="text/css" href="css/reset.css" rel="stylesheet" media="screen" />
+  <link type="text/css" href="css/main.css" rel="stylesheet" media="screen" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3811349067654166"
+          crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4SMJL64ZE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X4SMJL64ZE');
+  </script>
+  <link rel="icon" href="../static/logo1.ico" type="image/x-icon">
+</head>
+
+<body>
+
+  <header>
+      <!-- Gameplay and surrounding settings -->
+      <section id="settings">
+        <h3>设置</h3>
+        <ul>
+          <li><a id="mute-button" href="#"></a></li>
+          <li><a id="reset-button" href="#">重新开始</a></li>
+        </ul>
+      </section>
+    </div>
+  </header>
+
+  <div id="game">
+    <div id="game-status" class="ui"></div>
+    <div id="game-panels">
+      <div id="message" class="ui">
+        <h2 id="title">游戏说明</h2>
+        <ul class="instructions">
+          <li>1. 避开红点</li>
+          <li>2. 击中能量点即可获得提升</li>
+          <li>3. 通过大量走动来获得额外分数</li>
+          <li>4. 活着</li>
+        </ul>
+        <a href="#" id="start-button">开始</a>
+        <div id="level-selector">
+          <span>Level:</span>
+          <ul class="levels">
+            <!-- This will be populated by JS -->
+          </ul>
+        </div>
+      </div>
+      <div id="highscore-list" class="ui">
+        <h2>High Score</h2>
+        <ul id="highscore-output"></ul>
+        <!-- Auth markup is injected via JS here -->
+      </div>
+      <div id="highscore-win" class="ui">
+        <h2 id="highscore-place"></h2>
+        <p>Something to identify you by</p>
+        <input id="highscore-input" type="text" name="alias" maxlength="10" />
+        <a id="highscore-submit" href="#">Go</a>
+      </div>
+    </div>
+
+    <canvas id="world"></canvas>
+
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.5.2.min.js"%3E%3C/script%3E'))</script>
+
+  <script type="text/javascript" src="js/swfobject.js"></script>
+  <script type="text/javascript" src="js/sinuous.min.js"></script>
+
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-19474037-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+
+</body>
+
+</html>
