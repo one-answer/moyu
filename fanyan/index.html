@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta charset="utf-8"/>
+
+    <!-- Chrome for Android Colour -->
+    <meta name="theme-color" content="#db5945">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="html5contents/favicons/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="html5contents/favicons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="html5contents/favicons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="html5contents/favicons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="html5contents/favicons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="html5contents/favicons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="html5contents/favicons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="html5contents/favicons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="html5contents/favicons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="html5contents/favicons/apple-touch-icon-152x152.png" />
+
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196">
+
+    <!-- Set the title bar of the page -->
+    <title>繁衍战争</title>
+
+    <style>
+        body {
+            background: #242424;
+            color:#cccccc;
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+            overflow: auto;
+        }
+        canvas {
+            image-rendering: optimizeSpeed;
+            -webkit-interpolation-mode: nearest-neighbor;
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+        }
+        div.ad_wall_class {
+            display: none;
+            position: absolute;
+            width: 126px;
+            height: 17px;
+            margin-left: -63px;
+            margin-top: -8px;
+            left: 50%;
+            top: 50%;
+            background-color:#FFFFFF;
+        }
+        div.ad_banner_class {
+            display: none;
+            position: absolute;
+            width: 320px;
+            height: 50px;
+            margin-left: -160px;
+            left: 50%;
+            background-color:#FFFFFF;
+        }
+        div.loading_image_class {
+            position: absolute;
+            top: 35%; 				/* Center */
+            left: 50%; 				/* Center */
+            width: 126px;			/* Width of image */
+            height: 17px;			/* Height of image */
+            margin-left: -63px;		/* Half of width */
+            margin-top: -8px;		/* Half of height */
+            display: none;			/* Invisible */
+        }
+        :-webkit-full-screen #canvas {
+            width: 100%;
+            height: 100%;
+        }
+        div.gm4html5_div_class {
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+        }
+        div.gm4html5_login {
+            padding: 20px;
+            position: absolute;
+            border: solid 2px #000000;
+            background-color: #404040;
+            color:#00ff00;
+            border-radius: 15px;
+            box-shadow: #101010 20px 20px 40px;
+        }
+        div.gm4html5_cancel_button {
+            float: right;
+        }
+        div.gm4html5_login_button {
+            float: left;
+        }
+        div.gm4html5_login_header {
+            text-align: center;
+        }
+        :-webkit-full-screen {
+            width: 100%;
+            height: 100%;
+        }
+		.btn {
+		  position: absolute;
+		  bottom: 1%;
+		  right: 0px;
+		  border: 1px solid white;
+		  border-radius: 5px;
+		  font-size: 0.9rem;
+		  padding: 0.5rem 0.7em;
+		  background: transparent;
+		  color: #F9B31C;
+		  -webkit-font-smoothing: antialiased;
+		  font-weight: 700;
+		  cursor: pointer;
+		  transition: all .3s;
+		  z-index: 11;
+		}
+		
+		.btn_left {
+		  left: 0px;
+		  right: unset;
+		  text-decoration: none;
+		}
+		.btn_right {
+		  left: unset;
+		  right: 0px;
+		  text-decoration: none;
+		}
+		
+		.btn:hover {
+		  background: #ffffff;
+		  color: #2a2b2f;
+		}
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3811349067654166"
+            crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4SMJL64ZE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-X4SMJL64ZE');
+    </script>
+    <link rel="icon" href="../static/logo1.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="gm4html5_div_class" id="gm4html5_div_id">
+    <canvas id="canvas" width="1920" height="1080">
+        <p>Your browser doesn't support HTML5 canvas.</p>
+    </canvas>
+
+    <!-- Display the loading bar image -->
+    <div class="loading_image_class" id="loading_image_div">
+        <img src='html5contents/loading_image.png'>
+    </div>
+
+    <!-- AD WALL, 320w x 480h -->
+
+
+
+    <!-- BANNER AD, 320w x 50h -->
+
+</div>
+
+<!-- Run the game code : You have to change this with every new game -->
+<script type="text/javascript" src="html5contents/JCHTML5_Gloobies.js?QQTYB=793475998"></script>
+
+</body>
+</html>
