@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<title>井字棋</title>
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3811349067654166"
+				crossorigin="anonymous"></script>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4SMJL64ZE"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-X4SMJL64ZE');
+		</script>
+		<link rel="icon" href="../static/logo1.ico" type="image/x-icon">
+</head>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js"></script>
+	<body>
+		<div class="outer-container">
+			<button class="hard-reset">重启</button>
+			<p class="score-1"><span class="points"></span><span class="name"></span></p>
+			<i class="points-divider">&#124;</i>
+			<p class="score-2"><span class="points"></span><span class="name"></span></p>
+			<div class="player-one-turn">
+				<p></p>
+			</div>
+			<div class="player-two-turn">
+				<p></p>
+			</div>
+			<div class="board-container">
+				<div class="game-starter">
+					<p>你希望是 X 还是 O?</p>
+					<button class="choose-x">X</button>
+					<button class="choose-o">O</button>
+					<button class="back-button"><i class="fa fa-arrow-left"></i> 返回</button>
+				</div>
+				<div class="game-choice">
+					<p>请选择模式</p>
+					<button class="one-player">电脑</button>
+					<button class="two-player">双人</button>
+				</div>
+				<div class="game-board">
+					<div class="draw-message">
+						<p>是平局... :|</p>
+					</div>
+					<div class="lose-message">
+						<p>你输了... :(</p>
+					</div>
+					<div class="win-message">
+						<p>你赢了!!! :)</p>
+					</div>
+					<canvas id="myCanvas"></canvas>
+					<ul class="boxes">
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
