@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>中国象棋 | 摸鱼小游戏</title>
+<meta name="keywords" content="HTML5中国象棋" />
+<meta name="description" content="游戏 | HTML5中国象棋；立志打造一个拥有100个小游戏的摸鱼网站。" />
+<meta name="author" content="奥利弗(https://www.aolifu.org)" />
+<link href="css/zzsc.css" type="text/css" rel="stylesheet" />
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3811349067654166"
+			crossorigin="anonymous"></script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4SMJL64ZE"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-X4SMJL64ZE');
+	</script>
+	<link rel="icon" href="https://moyu.aolifu.org/static/logo1.ico" type="image/x-icon" sizes="192x192">
+</head>
+<body>
+<div class="box" id="box">
+	<div class="chess_left">
+		<canvas id="chess">对不起，您的浏览器不支持HTML5，请升级浏览器至IE9、firefox或者谷歌浏览器！</canvas>
+		<audio src="audio/click.wav" id="clickAudio" preload="auto"></audio>
+		<!--<audio src="audio/check.wav" id="checkAudio" preload="auto"></audio>-->
+		<audio src="audio/select.wav" id="selectAudio" preload="auto"></audio>
+		<link rel="stylesheet" type="text/css" href="https://www.bootcss.com/p/buttons/css/buttons.css">
+		<div>
+			<div class="bn_box" id="bnBox">
+				<input type="button" name="offensivePlay" id="tyroPlay" class="button button-caution button-pill button-jumbo" value="新手水平" />
+				<input type="button" name="offensivePlay" id="superPlay" class="button button-caution button-pill button-jumbo" value="中级水平" />
+                <input type="button" name="button" id="" value="大师水平" class="button button-caution button-pill button-jumbo" disabled /><br>
+				<!--
+			<input type="button" name="offensivePlay" id="offensivePlay" value="先手开始" />
+			<input type="button" name="defensivePlay" id="defensivePlay" value="后手开始" />
+			-->
+				<input type="button" name="regret" id="regretBn" class="button button-raised button-pill button-inverse" value="悔棋" />
+				<input type="button" name="billBn" id="billBn" value="重新开始" class="button button-glow button-rounded button-royal" class="bn_box" />
+				<input type="button" name="stypeBn" id="stypeBn" class="button button-raised button-primary button-pill" value="放大棋局" />
+			</div>
+		</div>
+	</div>
+	<div class="chess_right" id="chessRight">
+		<select name="billList" id="billList">
+		</select>
+		<ol id="billBox" class="bill_box">
+		</ol>
+	</div>
+	<div id="moveInfo" class="move_info"> </div>
+</div>
+<footer class="page-footer">
+  <span>更多游戏👉</span>
+  <a href="https://moyu.aolifu.org" target="_blank">
+	<img class="touxiang"  src="https://moyu.aolifu.org/static/logo1.ico" alt="George Martsoukos logo">
+  </a>
+</footer>
+<script src="js/common.js"></script> 
+<script src="js/play.js"></script> 
+<script src="js/AI.js"></script> 
+<script src="js/bill.js"></script> 
+<script src="js/gambit.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>小恐龙冒险 ｜ 摸鱼小游戏</title>
+		<meta name="keywords" content="小恐龙冒险" />
+		<meta name="description" content="小恐龙冒险" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+		<script>
+			(function (w, p, d, s, id) {
+if (p === w || d.getElementById(id)) return;
+var js, fjs = d.getElementsByTagName(s)[0];
+js = d.createElement(s); js.id = id;
+js.src = './developer.js';
+fjs.parentNode.insertBefore(js, fjs);
+}(window, window.parent, window.document, 'script', 'gameplayer-developer'));
+</script>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="apple-touch-icon" sizes="256x256" href="icon-256.png" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<link rel="shortcut icon" sizes="256x256" href="icon-256.png" />
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			body {
+				background: #000;
+				color: #fff;
+				overflow: hidden;
+				-ms-touch-action: none;
+			}
+
+			canvas {
+				touch-action-delay: none;
+				touch-action: none;
+				-ms-touch-action: none;
+			}
+		</style>
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3811349067654166"
+				crossorigin="anonymous"></script>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4SMJL64ZE"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-X4SMJL64ZE');
+		</script>
+		<link rel="icon" href="https://moyu.aolifu.org/static/logo1.ico" type="image/x-icon">
+</head>
+	<body>
+		<div id="fb-root"></div>
+		<script>
+			// 如果尝试在磁盘上预览导出的项目，请发出警告。
+			(function() {
+				// 检查是否在文件协议上运行导出
+				if (window.location.protocol.substr(0, 4) === "file") {}
+			})();
+		</script>
+		<div id="c2canvasdiv">
+			<canvas id="c2canvas" width="960" height="600">
+				<h1>您的浏览器似乎不支持HTML5。请尝试将浏览器升级到最新版本。 <a href="http://www.whatbrowser.org">什么是浏览器？</a>
+					<br /><br /><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br />
+					<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br />
+					<a href="http://www.google.com/chrome/">Google Chrome</a><br />
+					<a href="http://www.apple.com/safari/download/">Apple Safari</a><br />
+					<a href="http://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br /></h1>
+			</canvas>
+		</div>
+		<script src="jquery-2.0.0.min.js"></script>
+		<script src="c2runtime.js"></script>
+		<script type="text/javascript" src="./game.js"></script>
+		<script type="text/javascript" src="spilGamesWrapper.js"></script>
+		<script>
+			var x;
+			jQuery(window).resize(function() {
+				cr_sizeCanvas(jQuery(window).width(), jQuery(window).height());
+			});
+			jQuery(document).ready(function() {
+				cr_createRuntime("c2canvas");
+			});
+
+			function onVisibilityChanged() {
+				if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
+					cr_setSuspended(true);
+				else
+					cr_setSuspended(false);
+			};
+			document.addEventListener("visibilitychange", onVisibilityChanged, false);
+			document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+			document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+			document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+			GameAPI.loadAPI(function(API) {
+				// The API is ready for use.
+				// It can be accessed by using the "API" variable.
+				// For example, the following call requests a branding logo: 
+				// x = API.Branding.getLogo();
+			});
+		</script>
+		<script>
+			//禁用操作
+
+			window.onload = function() {
+				document.onkeydown = function() {
+					var e = window.event || arguments[0];
+					//F12
+					if (e.keyCode == 123) {
+						return false;
+						//Ctrl+Shift+I
+					} else if ((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {
+						return false;
+						//Ctrl+Shift+C
+					} else if ((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 67)) {
+						return false;
+						//Shift+F10
+					} else if ((e.shiftKey) && (e.keyCode == 121)) {
+						return false;
+						//Ctrl+U
+					} else if ((e.ctrlKey) && (e.keyCode == 85)) {
+						return false;
+						//Ctrl+S
+					} else if ((e.ctrlKey) && (e.keyCode == 83)) {
+						return false;
+					}
+				};
+				document.oncontextmenu = function() {
+					return false;
+				}
+			}
+
+			//禁止复制
+			document.onselectstart = new Function('event.returnValue=false;');
+
+			//禁止选择文字
+			document.body.onselectstart = function() {
+				self.event.returnValue = false
+			};
+		</script>
+	</body>
+</html>
