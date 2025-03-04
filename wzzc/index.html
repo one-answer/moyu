@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>亡者之城，3D版生化危机 ｜ 摸鱼小游戏</title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <link rel="stylesheet" href="css/orientation_utils.css" type="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+        <meta name="msapplication-tap-highlight" content="no"/>
+
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="js/createjs-2015.11.26.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3811349067654166"
+                crossorigin="anonymous"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4SMJL64ZE"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-X4SMJL64ZE');
+        </script>
+        <link rel="icon" href="https://moyu.aolifu.org/static/logo1.ico" type="image/x-icon">
+</head>
+    <body ondragstart="return false;" ondrop="return false;" >
+        <div style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%"></div>
+        <script>
+		
+            $(document).ready(function () {
+                var oMain = new CMain({
+                    fullscreen:true, //SET THIS TO FALSE IF YOU DON'T WANT TO SHOW FULLSCREEN BUTTON
+                    check_orientation: false,     //SET TO FALSE IF YOU DON'T WANT TO SHOW ORIENTATION ALERT ON MOBILE DEVICES
+                    
+                    aZombieOnStage:             //THIS IS WHERE THE OCCURENCES ARE SET, AFTER THE LAST ONE THE OCCURENCES ARE FIXED, 
+                                    [[100, 0, 0, 0],
+                                     [80, 20, 0,0],
+                                     [75, 15, 5, 5],
+                                     [10, 10, 80, 0],
+                                     [50, 35, 0, 15],
+                                     [45, 35, 0, 20],
+                                     [0, 0, 70, 30],
+                                     [25, 45, 0, 30],
+                                     [0, 60, 10, 30],
+                                     [0, 0, 50, 50],
+                                     [5, 35, 30, 30]
+                                    ],       
+                                    
+                    iPlayerHealth: 5, //SET HOW MANY HIT THE PLAYER CAN TAKE
+                    aZombieHealth: [1, 2, 1, 3], // SET HOW MANY SHOT EACH ZOMBIE CAN TAKE
+                    aAmountZombiesOnStage: [8, 18, 28, 39, 50, 62, 73, 84, 95, 95, 95], // SET THE NUMBER OF ZOMBIES FOR EACH WAVE, AFTER THE LAST ONE THE NUMBER IS FIXED
+                    iWaveInterval : 1.5, //HOW MANY SECONDS WE WAIT BETWEEN WAVES
+                    iSpawnInterval : 1, // HOW MANY SECONDS WE WAIT BETWEEN ZOMBIE SPAWNS
+                    iZombieOnScreen : 4 //MAXIMUM NUMBER OF ZOMBIES VISIBLE ON SCREEN
+                });
+                
+
+                $(oMain).on("start_session", function (evt) {
+                    if (getParamValue('ctl-arcade') === "true") {
+                        parent.__ctlArcadeStartSession();
+                    }
+                });
+
+                $(oMain).on("end_session", function (evt) {
+                    if (getParamValue('ctl-arcade') === "true") {
+                        parent.__ctlArcadeEndSession();
+                    }
+                });
+
+                $(oMain).on("save_score", function (evt, iScore) {
+                    if (getParamValue('ctl-arcade') === "true") {
+                        parent.__ctlArcadeSaveScore({score: iScore});
+                    }
+                });
+
+                $(oMain).on("show_interlevel_ad", function (evt) {
+                    if (getParamValue('ctl-arcade') === "true") {
+                        parent.__ctlArcadeShowInterlevelAD();
+                    }
+                });
+
+                
+
+                if (isIOS()) {
+                    setTimeout(function () {
+                        sizeHandler();
+                    }, 200);
+                } else {
+                    sizeHandler();
+                }
+            });
+
+        </script>
+       
+		<canvas id="canvas" class='ani_hack' width="960" height="576"> </canvas>
+        <div data-orientation="landscape" class="orientation-msg-container"><p class="orientation-msg-text">Please rotate your device</p></div>
+        <div id="block_game" style="position: fixed; background-color: transparent; top: 0px; left: 0px; width: 100%; height: 100%; display:none"></div>
+<div style="display:none">
+
+
+</div>
+    </body>
+</html>
