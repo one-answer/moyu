@@ -66,6 +66,10 @@
 	</style>
 </head>
 <body>
+<div style="text-align: right; padding: 20px; position: fixed; top: 0; width: 100%; background-color: transparent; z-index: 1000;">
+	<input type="text" id="searchInput" placeholder="请输入游戏名称" style="padding: 5px; width: 200px; border: 2px solid #fff; border-radius: 5px; background-color: rgba(255, 255, 255, 0.8); color: #333;" onkeydown="handleKeyDown(event)">
+	<button onclick="searchGames()" style="padding: 5px; border: 2px solid #fff; border-radius: 5px; background-color: rgba(255, 255, 255, 0.8); color: #333;">搜索</button>
+</div>
 <div class="game-container">
 	<a href="JSchuangguanxiaoyouxi/index.html" class="game-card">
 		<div class="game-icon" style="background-image: url('JSchuangguanxiaoyouxi/js闯关.jpg');"></div>
@@ -431,5 +435,25 @@
 	</a>
 
 </div>
+<script>
+	function searchGames() {
+		const input = document.getElementById('searchInput').value.toLowerCase();
+		const gameCards = document.querySelectorAll('.game-card');
+		gameCards.forEach(card => {
+			const title = card.querySelector('.game-title').textContent.toLowerCase();
+			if (title.includes(input)) {
+				card.style.display = '';
+			} else {
+				card.style.display = 'none';
+			}
+		});
+	}
+
+	function handleKeyDown(event) {
+		if (event.key === 'Enter') {
+			searchGames();
+		}
+	}
+</script>
 </body>
 </html>
