@@ -23,19 +23,21 @@
 	</script>
 
 	<style>
-		body {
-			background-image: url('https://moyu.aolifu.org/static/bg1.png'); /* Add your background image here */
-			background-size: cover;
-			background-position: center;
-			background-attachment: fixed;
-			font-family: Arial, sans-serif;
-		}
-		.game-container {
-			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-			gap: 16px;
-			padding: 20px;
-		}
+		 body {
+        background-image: url('https://moyu.aolifu.org/static/bg1.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        font-family: Arial, sans-serif;
+        padding-top: 80px; /* 添加顶部内边距，为搜索框留出空间 */
+    }
+    
+    .game-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+        padding: 20px;
+    }
 		.game-card {
 			background-color: #fff;
 			border-radius: 8px;
@@ -66,10 +68,31 @@
 	</style>
 </head>
 <body>
-<div style="text-align: right; padding: 20px; position: fixed; top: 0; width: 100%; background-color: transparent; z-index: 1000;">
-	<input type="text" id="searchInput" placeholder="请输入游戏名称" style="padding: 5px; width: 200px; border: 2px solid #fff; border-radius: 5px; background-color: rgba(255, 255, 255, 0.8); color: #333;" onkeydown="handleKeyDown(event)">
-	<button onclick="searchGames()" style="padding: 5px; border: 2px solid #fff; border-radius: 5px; background-color: rgba(255, 255, 255, 0.8); color: #333;">搜索</button>
-</div>
+	<div style="text-align: right; padding: 20px; position: fixed; top: 0; width: 100%; background-color: transparent; z-index: 1000;">
+		<div style="display: inline-flex; align-items: center; background: rgba(255, 255, 255, 0.2); padding: 8px 16px; border-radius: 50px; backdrop-filter: blur(10px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+			<input type="text" id="searchInput" placeholder="搜索游戏..." 
+				style="width: 200px; 
+					   padding: 8px 12px;
+					   border: none;
+					   background: transparent;
+					   color: #333;
+					   font-size: 16px;
+					   outline: none;"
+				onkeydown="handleKeyDown(event)">
+			<button onclick="searchGames()" 
+				style="background: #4a90e2;
+					   color: white;
+					   border: none;
+					   padding: 8px 20px;
+					   border-radius: 25px;
+					   margin-left: 8px;
+					   cursor: pointer;
+					   transition: all 0.3s ease;
+					   font-size: 14px;">
+				搜索
+			</button>
+		</div>
+	</div>
 <div class="game-container">
 	<a href="JSchuangguanxiaoyouxi/index.html" class="game-card">
 		<div class="game-icon" style="background-image: url('JSchuangguanxiaoyouxi/js闯关.jpg');"></div>
