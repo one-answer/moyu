@@ -23,460 +23,617 @@
 	</script>
 
 	<style>
-		 body {
-        background-image: url('https://moyu.aolifu.org/static/bg1.png');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        font-family: Arial, sans-serif;
-        padding-top: 80px; /* 添加顶部内边距，为搜索框留出空间 */
-    }
-    
-    .game-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 16px;
-        padding: 20px;
-    }
-		.game-card {
-			background-color: #fff;
-			border-radius: 8px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			text-align: center;
-			overflow: hidden;
-			transition: transform 0.3s ease;
-			text-decoration: none;
-			color: inherit;
-			transform: scale(0.6)
+		:root {
+			--primary-color: #4a90e2;
+			--hover-color: #357abd;
+			--card-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+			--card-hover-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 		}
-		.game-card:hover {
-			transform: translateY(-10px);
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
 		}
-		.game-icon {
-			width: 100%;
-			height: 150px;
+
+		body {
+			background-image: url('https://moyu.aolifu.org/static/bg1.png');
 			background-size: cover;
 			background-position: center;
+			background-attachment: fixed;
+			font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+			padding-top: 100px;
+			min-height: 100vh;
 		}
-		.game-title {
-			padding: 10px;
+
+		.header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			padding: 20px;
+			background: transparent;
+			z-index: 1000;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.search-container {
+			display: flex;
+			align-items: center;
+			background: rgba(255, 255, 255, 0.2);
+			backdrop-filter: blur(8px);
+			border-radius: 50px;
+			padding: 8px;
+			width: 100%;
+			max-width: 500px;
+			transition: all 0.3s ease;
+			border: 1px solid rgba(255, 255, 255, 0.3);
+		}
+
+		.search-container:focus-within {
+			background: rgba(255, 255, 255, 0.3);
+			box-shadow: 0 0 0 2px var(--primary-color);
+			border-color: transparent;
+		}
+
+		#searchInput {
+			flex: 1;
+			padding: 12px 20px;
+			border: none;
+			background: transparent;
 			font-size: 16px;
-			font-weight: bold;
-			background-color: #f8f8f8;
-			border-top: 1px solid #e0e0e0;
+			color: #fff;
+			outline: none;
+			width: 100%;
+		}
+
+		#searchInput::placeholder {
+			color: rgba(255, 255, 255, 0.8);
+		}
+
+		.search-btn {
+			background: var(--primary-color);
+			color: white;
+			border: none;
+			padding: 12px 30px;
+			border-radius: 25px;
+			cursor: pointer;
+			font-size: 15px;
+			font-weight: 500;
+			transition: all 0.3s ease;
+			margin-left: 8px;
+		}
+
+		.search-btn:hover {
+			background: var(--hover-color);
+			transform: translateY(-1px);
+		}
+
+		.game-container {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			gap: 24px;
+			padding: 24px;
+			max-width: 1400px;
+			margin: 0 auto;
+		}
+
+		.game-card {
+			background-color: #fff;
+			border-radius: 16px;
+			box-shadow: var(--card-shadow);
+			text-align: center;
+			overflow: hidden;
+			transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+			text-decoration: none;
+			color: inherit;
+			position: relative;
+			height: 100%;
+		}
+
+		.game-card:hover {
+			transform: translateY(-8px);
+			box-shadow: var(--card-hover-shadow);
+		}
+
+		.game-card:hover .game-icon {
+			transform: scale(1.05);
+		}
+
+		.game-icon {
+			width: 100%;
+			height: 200px;
+			background-size: cover;
+			background-position: center;
+			transition: transform 0.4s ease;
+		}
+
+		.game-title {
+			padding: 16px;
+			font-size: 16px;
+			font-weight: 600;
+			color: #333;
+			background-color: #fff;
+			border-top: 1px solid #f0f0f0;
+		}
+
+		@media (max-width: 768px) {
+			body {
+				padding-top: 80px;
+			}
+
+			.header {
+				padding: 15px;
+			}
+
+			.game-container {
+				grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+				gap: 16px;
+				padding: 16px;
+			}
+
+			.game-icon {
+				height: 160px;
+			}
+
+			.game-title {
+				padding: 12px;
+				font-size: 14px;
+			}
+
+			.search-container {
+				flex-direction: column;
+				background: transparent;
+				gap: 10px;
+			}
+
+			#searchInput {
+				width: 100%;
+				background: #f5f5f5;
+				border-radius: 25px;
+			}
+
+			.search-btn {
+				width: 100%;
+				margin-left: 0;
+			}
+		}
+
+		/* 添加加载动画 */
+		.game-card {
+			opacity: 0;
+			animation: fadeInUp 0.6s ease forwards;
+		}
+
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* 添加卡片动画延迟 */
+		.game-card:nth-child(n) {
+			animation-delay: calc(0.1s * var(--i, 0));
 		}
 	</style>
 </head>
 <body>
-	<div style="text-align: right; padding: 20px; position: fixed; top: 0; width: 100%; background-color: transparent; z-index: 1000;">
-		<div style="display: inline-flex; align-items: center; background: rgba(255, 255, 255, 0.2); padding: 8px 16px; border-radius: 50px; backdrop-filter: blur(10px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-			<input type="text" id="searchInput" placeholder="搜索游戏..." 
-				style="width: 200px; 
-					   padding: 8px 12px;
-					   border: none;
-					   background: transparent;
-					   color: #333;
-					   font-size: 16px;
-					   outline: none;"
-				onkeydown="handleKeyDown(event)">
-			<button onclick="searchGames()" 
-				style="background: #4a90e2;
-					   color: white;
-					   border: none;
-					   padding: 8px 20px;
-					   border-radius: 25px;
-					   margin-left: 8px;
-					   cursor: pointer;
-					   transition: all 0.3s ease;
-					   font-size: 14px;">
+	<header class="header">
+		<div class="search-container">
+			<input type="text" id="searchInput" placeholder="搜索游戏..." onkeydown="handleKeyDown(event)">
+			<button onclick="searchGames()" class="search-btn">
 				搜索
 			</button>
 		</div>
+	</header>
+
+	<div class="game-container">
+		<a href="JSchuangguanxiaoyouxi/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('JSchuangguanxiaoyouxi/js闯关.jpg');"></div>
+			<div class="game-title">JS闯关小游戏</div>
+		</a>
+
+		<a href="gaitalou/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('gaitalou/盖塔楼.jpg');"></div>
+			<div class="game-title">盖塔楼</div>
+		</a>
+		<a href="qiefangkuai/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('qiefangkuai/切方块.jpg');"></div>
+			<div class="game-title">切方块</div>
+		</a>
+		<a href="shaizi/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('shaizi/骰子.jpg');"></div>
+			<div class="game-title">骰子游戏</div>
+		</a>
+		<a href="shasiguowang/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('shasiguowang/杀死国王.jpg');"></div>
+			<div class="game-title">杀死国王</div>
+		</a>
+
+		<a href="shitoujiandaobu/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('shitoujiandaobu/石头剪刀布.jpg');"></div>
+			<div class="game-title">石头剪刀布</div>
+		</a>
+		<a href="xiangyingshi2048xiaoyouxi/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('xiangyingshi2048xiaoyouxi/2048.jpg');"></div>
+			<div class="game-title">2048</div>
+		</a>
+		<a href="xiaobawangyouxiji/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('xiaobawangyouxiji/小霸王游戏机.jpg');"></div>
+			<div class="game-title">小霸王游戏机</div>
+		</a>
+		<a href="zhipaijiyi/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('zhipaijiyi/纸牌记忆.jpg');"></div>
+			<div class="game-title">纸牌记忆</div>
+		</a>
+		<a href="3dboxing/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('3dboxing/icon.png');"></div>
+			<div class="game-title">拳击</div>
+		</a>
+		<a href="123sst/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('123sst/icon.png');"></div>
+			<div class="game-title">123算术题</div>
+		</a>
+		<a href="1942/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('1942/icon.png');"></div>
+			<div class="game-title">空战1942</div>
+		</a>
+		<a href="baozi/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('baozi/icon.png');"></div>
+			<div class="game-title">吃包子</div>
+		</a>
+		<a href="bdsjm/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('bdsjm/images/dbsjm.jpg');"></div>
+			<div class="game-title">暴打神经猫</div>
+		</a>
+		<a href="bhlb/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('bhlb/icon.png');"></div>
+			<div class="game-title">保护老板</div>
+		</a>
+		<a href="bikaihongdian/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('bikaihongdian/避开红点.jpg');"></div>
+			<div class="game-title">避开红点</div>
+		</a>
+		<a href="bttz/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('bttz/img/02.jpg');"></div>
+			<div class="game-title">冰桶挑战</div>
+		</a>
+		<a href="jqrzdy/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('jqrzdy/机器人总动员.jpg');"></div>
+			<div class="game-title">机器人总动员</div>
+		</a>
+		<a href="chdazuozhan/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('chdazuozhan/icon.png');"></div>
+			<div class="game-title">吃货大作战</div>
+		</a>
+		<a href="cjmla/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('cjmla/icon.png');"></div>
+			<div class="game-title">超级马里奥</div>
+		</a>
+		<a href="ckql/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('ckql/icon.png');"></div>
+			<div class="game-title">拆开情侣，保护单身狗</div>
+		</a>
+		<a href="coreball/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('coreball/icon.png');"></div>
+			<div class="game-title">CoreBall</div>
+		</a>
+		<a href="coronavirus-invaders/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('coronavirus-invaders/icon.png');"></div>
+			<div class="game-title">病毒入侵者</div>
+		</a>
+		<a href="meiweidazhaxie/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('meiweidazhaxie/icon.png');"></div>
+			<div class="game-title">美味大闸蟹</div>
+		</a>
+		<a href="dadishu/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('dadishu/icon.png');"></div>
+			<div class="game-title">打地鼠</div>
+		</a>
+		<a href="dalaohu/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('dalaohu/icon.png');"></div>
+			<div class="game-title">打老虎</div>
+		</a>
+		<a href="demoncastle/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('demoncastle/icon.png');"></div>
+			<div class="game-title">魔兽城堡</div>
+		</a>
+		<a href="diandeng/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('diandeng/icon.png');"></div>
+			<div class="game-title">最强电灯泡</div>
+		</a>
+		<a href="dianpao/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('dianpao/icon.png');"></div>
+			<div class="game-title">点炮过大年</div>
+		</a>
+		<a href="diaoyu/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('diaoyu/fish.png');"></div>
+			<div class="game-title">钓鱼</div>
+		</a>
+		<a href="djz/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('djz/icon.png');"></div>
+			<div class="game-title">打击者</div>
+		</a>
+		<a href="doudizhu/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('doudizhu/icon.png');"></div>
+			<div class="game-title">斗地主</div>
+		</a>
+		<a href="duimutou/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('duimutou/icon.png');"></div>
+			<div class="game-title">堆木头</div>
+		</a>
+		<a href="dumpling/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('dumpling/icon.png');"></div>
+			<div class="game-title">一起来抢吧</div>
+		</a>
+		<a href="duxinshu/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('duxinshu/dxs.png');"></div>
+			<div class="game-title">读心术</div>
+		</a>
+		<a href="eluosi/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('eluosi/icon.png');"></div>
+			<div class="game-title">俄罗斯方块</div>
+		</a>
+		<a href="emoji-editor/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('emoji-editor/icon.png');"></div>
+			<div class="game-title">Emoji表情编辑</div>
+		</a>
+		<a href="epicsnowman/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('epicsnowman/icon.png');"></div>
+			<div class="game-title">堆雪人</div>
+		</a>
+		<a href="fankongyingxiong/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('fankongyingxiong/icon.png');"></div>
+			<div class="game-title">反恐英雄</div>
+		</a>
+		<a href="fanyan/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('fanyan/icon.png');"></div>
+			<div class="game-title">繁衍战争</div>
+		</a>
+		<a href="fcys/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('fcys/icon.png');"></div>
+			<div class="game-title">废柴勇士</div>
+		</a>
+		<a href="feidegenggao/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('feidegenggao/icon.png');"></div>
+			<div class="game-title">我要飞得更高</div>
+		</a>
+		<a href="fjdz/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('fjdz/icon.png');"></div>
+			<div class="game-title">飞机大战</div>
+		</a>
+		<a href="fkdfk/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('fkdfk/icon.png');"></div>
+			<div class="game-title">疯狂的方块</div>
+		</a>
+		<a href="flyhouse/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('flyhouse/icon.png');"></div>
+			<div class="game-title">让屋子飞</div>
+		</a>
+		<a href="freekick/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('freekick/icon.png');"></div>
+			<div class="game-title">任意球大师</div>
+		</a>
+		<a href="ftz/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('ftz/ftz.jpg');"></div>
+			<div class="game-title">挑战繁简字</div>
+		</a>
+		<a href="fxyxl/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('fxyxl/icon.png');"></div>
+			<div class="game-title">飞行员训练</div>
+		</a>
+		<a href="gdhtl/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('gdhtl/icon.png');"></div>
+			<div class="game-title">锅打灰太狼</div>
+		</a>
+		<a href="gongfumao/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('gongfumao/gfm.png');"></div>
+			<div class="game-title">功夫猫</div>
+		</a>
+		<a href="grfhy/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('grfhy/icon.png');"></div>
+			<div class="game-title">高尔夫花园</div>
+		</a>
+		<a href="gtzp/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('gtzp/icon.png');"></div>
+			<div class="game-title">龟兔再跑</div>
+		</a>
+		<a href="guaguale/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('guaguale/icon.png');"></div>
+			<div class="game-title">刮刮乐</div>
+		</a>
+		<a href="gulaodekuangshi/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('gulaodekuangshi/icon.png');"></div>
+			<div class="game-title">古老的矿石</div>
+		</a>
+		<a href="hldy/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('hldy/icon.png');"></div>
+			<div class="game-title">欢乐钓鱼</div>
+		</a>
+		<a href="jg/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('jg/icon.png');"></div>
+			<div class="game-title">激光防线</div>
+		</a>
+		<a href="dmtjd/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('dmtjd/地面突击队.jpg');"></div>
+			<div class="game-title">地面突击队</div>
+		</a>
+		<a href="shengdanlaorenguoqiao/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('shengdanlaorenguoqiao/圣诞老人过桥.jpg');"></div>
+			<div class="game-title">圣诞老人过桥</div>
+		</a>
+		<a href="jietoubawang/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('jietoubawang/icon.png');"></div>
+			<div class="game-title">街头霸王</div>
+		</a>
+		<a href="jingziqi/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('jingziqi/icon.png');"></div>
+			<div class="game-title">井字棋</div>
+		</a>
+		<a href="jksz/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('jksz/logo.png');"></div>
+			<div class="game-title">解开绳子</div>
+		</a>
+		<a href="jlh/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('jlh/favicon.ico');"></div>
+			<div class="game-title">鸡乐盒</div>
+		</a>
+		<a href="jlyj/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('jlyj/icon.png');"></div>
+			<div class="game-title">激流勇进</div>
+		</a>
+		<a href="jntt/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('jntt/icon.png');"></div>
+			<div class="game-title">贱鸟跳跳</div>
+		</a>
+		<a href="jtlq/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('jtlq/icon.png');"></div>
+			<div class="game-title">街头篮球</div>
+		</a>
+		<a href="jumpingfrog/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('jumpingfrog/icon.png');"></div>
+			<div class="game-title">跳跳蛙</div>
+		</a>
+		<a href="magicegg/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('magicegg/icon.png');"></div>
+			<div class="game-title">魔法蛋</div>
+		</a>
+		<a href="mofang/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('mofang/icon.png');"></div>
+			<div class="game-title">拼魔方</div>
+		</a>
+		<a href="muyu/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('muyu/icon.png');"></div>
+			<div class="game-title">电子木鱼</div>
+		</a>
+		<a href="PlantsvsZombies/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('PlantsvsZombies/icon.png');"></div>
+			<div class="game-title">植物大战僵尸</div>
+		</a>
+		<a href="qiupaozhe/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('qiupaozhe/icon.png');"></div>
+			<div class="game-title">球跑者</div>
+		</a>
+		<a href="qwccy/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('qwccy/icon.png');"></div>
+			<div class="game-title">青蛙吃苍蝇</div>
+		</a>
+		<a href="saiche/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('saiche/icon.png');"></div>
+			<div class="game-title">赛车</div>
+		</a>
+		<a href="SpaceHuggers/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('SpaceHuggers/favicon.ico');"></div>
+			<div class="game-title">Space Huggers</div>
+		</a>
+		<a href="starcraft/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('starcraft/favicon.ico');"></div>
+			<div class="game-title">star craft</div>
+		</a>
+		<a href="taiqiu/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('taiqiu/icon.png');"></div>
+			<div class="game-title">台球</div>
+		</a>
+		<a href="tjmj/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('tjmj/mahjong.ico');"></div>
+			<div class="game-title">天津麻将</div>
+		</a>
+		<a href="tkdz/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('tkdz/logo.png');"></div>
+			<div class="game-title">坦克大战</div>
+		</a>
+		<a href="towergame/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('towergame/logo.png');"></div>
+			<div class="game-title">盖楼</div>
+		</a>
+		<a href="weijing/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('weijing/icon.png');"></div>
+			<div class="game-title">维京战争</div>
+		</a>
+		<a href="wu/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('wu/wu.png');"></div>
+			<div class="game-title">双人五子棋</div>
+		</a>
+		<a href="wzzc/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('wzzc/wzzc.png');"></div>
+			<div class="game-title">亡者之城</div>
+		</a>
+		<a href="xiangqi/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('xiangqi/xq.png');"></div>
+			<div class="game-title">中国象棋</div>
+		</a>
+		<a href="xiaokonglongmaoxian/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('xiaokonglongmaoxian/xkl.png');"></div>
+			<div class="game-title">小恐龙冒险</div>
+		</a>
+		<a href="xmfk/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('xmfk/logo.png');"></div>
+			<div class="game-title">消灭方块</div>
+		</a>
+		<a href="xxl/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('xxl/xxl.png');"></div>
+			<div class="game-title">消消乐</div>
+		</a>
+		<a href="xygsz/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('xygsz/icon.png');"></div>
+			<div class="game-title">下一个数字</div>
+		</a>
+		<a href="yigedoubunengsi/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('yigedoubunengsi/icon.png');"></div>
+			<div class="game-title">一个都不能死</div>
+		</a>
+		<a href="zhsl/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('zhsl/logo.png');"></div>
+			<div class="game-title">召唤神龙</div>
+		</a>
+		<a href="yxlm/index.html" class="game-card">
+			<div class="game-icon" style="background-image: url('yxlm/logo.png');"></div>
+			<div class="game-title">英雄联盟</div>
+		</a>
+
 	</div>
-<div class="game-container">
-	<a href="JSchuangguanxiaoyouxi/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('JSchuangguanxiaoyouxi/js闯关.jpg');"></div>
-		<div class="game-title">JS闯关小游戏</div>
-	</a>
 
-	<a href="gaitalou/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('gaitalou/盖塔楼.jpg');"></div>
-		<div class="game-title">盖塔楼</div>
-	</a>
-	<a href="qiefangkuai/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('qiefangkuai/切方块.jpg');"></div>
-		<div class="game-title">切方块</div>
-	</a>
-	<a href="shaizi/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('shaizi/骰子.jpg');"></div>
-		<div class="game-title">骰子游戏</div>
-	</a>
-	<a href="shasiguowang/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('shasiguowang/杀死国王.jpg');"></div>
-		<div class="game-title">杀死国王</div>
-	</a>
-
-	<a href="shitoujiandaobu/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('shitoujiandaobu/石头剪刀布.jpg');"></div>
-		<div class="game-title">石头剪刀布</div>
-	</a>
-	<a href="xiangyingshi2048xiaoyouxi/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('xiangyingshi2048xiaoyouxi/2048.jpg');"></div>
-		<div class="game-title">2048</div>
-	</a>
-	<a href="xiaobawangyouxiji/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('xiaobawangyouxiji/小霸王游戏机.jpg');"></div>
-		<div class="game-title">小霸王游戏机</div>
-	</a>
-	<a href="zhipaijiyi/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('zhipaijiyi/纸牌记忆.jpg');"></div>
-		<div class="game-title">纸牌记忆</div>
-	</a>
-	<a href="3dboxing/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('3dboxing/icon.png');"></div>
-		<div class="game-title">拳击</div>
-	</a>
-	<a href="123sst/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('123sst/icon.png');"></div>
-		<div class="game-title">123算术题</div>
-	</a>
-	<a href="1942/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('1942/icon.png');"></div>
-		<div class="game-title">空战1942</div>
-	</a>
-	<a href="baozi/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('baozi/icon.png');"></div>
-		<div class="game-title">吃包子</div>
-	</a>
-	<a href="bdsjm/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('bdsjm/images/dbsjm.jpg');"></div>
-		<div class="game-title">暴打神经猫</div>
-	</a>
-	<a href="bhlb/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('bhlb/icon.png');"></div>
-		<div class="game-title">保护老板</div>
-	</a>
-	<a href="bikaihongdian/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('bikaihongdian/避开红点.jpg');"></div>
-		<div class="game-title">避开红点</div>
-	</a>
-	<a href="bttz/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('bttz/img/02.jpg');"></div>
-		<div class="game-title">冰桶挑战</div>
-	</a>
-	<a href="jqrzdy/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('jqrzdy/机器人总动员.jpg');"></div>
-		<div class="game-title">机器人总动员</div>
-	</a>
-	<a href="chdazuozhan/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('chdazuozhan/icon.png');"></div>
-		<div class="game-title">吃货大作战</div>
-	</a>
-	<a href="cjmla/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('cjmla/icon.png');"></div>
-		<div class="game-title">超级马里奥</div>
-	</a>
-	<a href="ckql/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('ckql/icon.png');"></div>
-		<div class="game-title">拆开情侣，保护单身狗</div>
-	</a>
-	<a href="coreball/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('coreball/icon.png');"></div>
-		<div class="game-title">CoreBall</div>
-	</a>
-	<a href="coronavirus-invaders/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('coronavirus-invaders/icon.png');"></div>
-		<div class="game-title">病毒入侵者</div>
-	</a>
-	<a href="meiweidazhaxie/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('meiweidazhaxie/icon.png');"></div>
-		<div class="game-title">美味大闸蟹</div>
-	</a>
-	<a href="dadishu/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('dadishu/icon.png');"></div>
-		<div class="game-title">打地鼠</div>
-	</a>
-	<a href="dalaohu/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('dalaohu/icon.png');"></div>
-		<div class="game-title">打老虎</div>
-	</a>
-	<a href="demoncastle/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('demoncastle/icon.png');"></div>
-		<div class="game-title">魔兽城堡</div>
-	</a>
-	<a href="diandeng/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('diandeng/icon.png');"></div>
-		<div class="game-title">最强电灯泡</div>
-	</a>
-	<a href="dianpao/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('dianpao/icon.png');"></div>
-		<div class="game-title">点炮过大年</div>
-	</a>
-	<a href="diaoyu/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('diaoyu/fish.png');"></div>
-		<div class="game-title">钓鱼</div>
-	</a>
-	<a href="djz/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('djz/icon.png');"></div>
-		<div class="game-title">打击者</div>
-	</a>
-	<a href="doudizhu/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('doudizhu/icon.png');"></div>
-		<div class="game-title">斗地主</div>
-	</a>
-	<a href="duimutou/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('duimutou/icon.png');"></div>
-		<div class="game-title">堆木头</div>
-	</a>
-	<a href="dumpling/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('dumpling/icon.png');"></div>
-		<div class="game-title">一起来抢吧</div>
-	</a>
-	<a href="duxinshu/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('duxinshu/dxs.png');"></div>
-		<div class="game-title">读心术</div>
-	</a>
-	<a href="eluosi/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('eluosi/icon.png');"></div>
-		<div class="game-title">俄罗斯方块</div>
-	</a>
-	<a href="emoji-editor/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('emoji-editor/icon.png');"></div>
-		<div class="game-title">Emoji表情编辑</div>
-	</a>
-	<a href="epicsnowman/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('epicsnowman/icon.png');"></div>
-		<div class="game-title">堆雪人</div>
-	</a>
-	<a href="fankongyingxiong/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('fankongyingxiong/icon.png');"></div>
-		<div class="game-title">反恐英雄</div>
-	</a>
-	<a href="fanyan/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('fanyan/icon.png');"></div>
-		<div class="game-title">繁衍战争</div>
-	</a>
-	<a href="fcys/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('fcys/icon.png');"></div>
-		<div class="game-title">废柴勇士</div>
-	</a>
-	<a href="feidegenggao/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('feidegenggao/icon.png');"></div>
-		<div class="game-title">我要飞得更高</div>
-	</a>
-	<a href="fjdz/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('fjdz/icon.png');"></div>
-		<div class="game-title">飞机大战</div>
-	</a>
-	<a href="fkdfk/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('fkdfk/icon.png');"></div>
-		<div class="game-title">疯狂的方块</div>
-	</a>
-	<a href="flyhouse/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('flyhouse/icon.png');"></div>
-		<div class="game-title">让屋子飞</div>
-	</a>
-	<a href="freekick/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('freekick/icon.png');"></div>
-		<div class="game-title">任意球大师</div>
-	</a>
-	<a href="ftz/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('ftz/ftz.jpg');"></div>
-		<div class="game-title">挑战繁简字</div>
-	</a>
-	<a href="fxyxl/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('fxyxl/icon.png');"></div>
-		<div class="game-title">飞行员训练</div>
-	</a>
-	<a href="gdhtl/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('gdhtl/icon.png');"></div>
-		<div class="game-title">锅打灰太狼</div>
-	</a>
-	<a href="gongfumao/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('gongfumao/gfm.png');"></div>
-		<div class="game-title">功夫猫</div>
-	</a>
-	<a href="grfhy/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('grfhy/icon.png');"></div>
-		<div class="game-title">高尔夫花园</div>
-	</a>
-	<a href="gtzp/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('gtzp/icon.png');"></div>
-		<div class="game-title">龟兔再跑</div>
-	</a>
-	<a href="guaguale/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('guaguale/icon.png');"></div>
-		<div class="game-title">刮刮乐</div>
-	</a>
-	<a href="gulaodekuangshi/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('gulaodekuangshi/icon.png');"></div>
-		<div class="game-title">古老的矿石</div>
-	</a>
-	<a href="hldy/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('hldy/icon.png');"></div>
-		<div class="game-title">欢乐钓鱼</div>
-	</a>
-	<a href="jg/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('jg/icon.png');"></div>
-		<div class="game-title">激光防线</div>
-	</a>
-	<a href="dmtjd/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('dmtjd/地面突击队.jpg');"></div>
-		<div class="game-title">地面突击队</div>
-	</a>
-	<a href="shengdanlaorenguoqiao/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('shengdanlaorenguoqiao/圣诞老人过桥.jpg');"></div>
-		<div class="game-title">圣诞老人过桥</div>
-	</a>
-	<a href="jietoubawang/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('jietoubawang/icon.png');"></div>
-		<div class="game-title">街头霸王</div>
-	</a>
-	<a href="jingziqi/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('jingziqi/icon.png');"></div>
-		<div class="game-title">井字棋</div>
-	</a>
-	<a href="jksz/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('jksz/logo.png');"></div>
-		<div class="game-title">解开绳子</div>
-	</a>
-	<a href="jlh/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('jlh/favicon.ico');"></div>
-		<div class="game-title">鸡乐盒</div>
-	</a>
-	<a href="jlyj/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('jlyj/icon.png');"></div>
-		<div class="game-title">激流勇进</div>
-	</a>
-	<a href="jntt/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('jntt/icon.png');"></div>
-		<div class="game-title">贱鸟跳跳</div>
-	</a>
-	<a href="jtlq/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('jtlq/icon.png');"></div>
-		<div class="game-title">街头篮球</div>
-	</a>
-	<a href="jumpingfrog/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('jumpingfrog/icon.png');"></div>
-		<div class="game-title">跳跳蛙</div>
-	</a>
-	<a href="magicegg/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('magicegg/icon.png');"></div>
-		<div class="game-title">魔法蛋</div>
-	</a>
-	<a href="mofang/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('mofang/icon.png');"></div>
-		<div class="game-title">拼魔方</div>
-	</a>
-	<a href="muyu/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('muyu/icon.png');"></div>
-		<div class="game-title">电子木鱼</div>
-	</a>
-	<a href="PlantsvsZombies/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('PlantsvsZombies/icon.png');"></div>
-		<div class="game-title">植物大战僵尸</div>
-	</a>
-	<a href="qiupaozhe/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('qiupaozhe/icon.png');"></div>
-		<div class="game-title">球跑者</div>
-	</a>
-	<a href="qwccy/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('qwccy/icon.png');"></div>
-		<div class="game-title">青蛙吃苍蝇</div>
-	</a>
-	<a href="saiche/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('saiche/icon.png');"></div>
-		<div class="game-title">赛车</div>
-	</a>
-	<a href="SpaceHuggers/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('SpaceHuggers/favicon.ico');"></div>
-		<div class="game-title">Space Huggers</div>
-	</a>
-	<a href="starcraft/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('starcraft/favicon.ico');"></div>
-		<div class="game-title">star craft</div>
-	</a>
-	<a href="taiqiu/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('taiqiu/icon.png');"></div>
-		<div class="game-title">台球</div>
-	</a>
-	<a href="tjmj/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('tjmj/mahjong.ico');"></div>
-		<div class="game-title">天津麻将</div>
-	</a>
-	<a href="tkdz/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('tkdz/logo.png');"></div>
-		<div class="game-title">坦克大战</div>
-	</a>
-	<a href="towergame/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('towergame/logo.png');"></div>
-		<div class="game-title">盖楼</div>
-	</a>
-	<a href="weijing/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('weijing/icon.png');"></div>
-		<div class="game-title">维京战争</div>
-	</a>
-	<a href="wu/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('wu/wu.png');"></div>
-		<div class="game-title">双人五子棋</div>
-	</a>
-	<a href="wzzc/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('wzzc/wzzc.png');"></div>
-		<div class="game-title">亡者之城</div>
-	</a>
-	<a href="xiangqi/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('xiangqi/xq.png');"></div>
-		<div class="game-title">中国象棋</div>
-	</a>
-	<a href="xiaokonglongmaoxian/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('xiaokonglongmaoxian/xkl.png');"></div>
-		<div class="game-title">小恐龙冒险</div>
-	</a>
-	<a href="xmfk/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('xmfk/logo.png');"></div>
-		<div class="game-title">消灭方块</div>
-	</a>
-	<a href="xxl/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('xxl/xxl.png');"></div>
-		<div class="game-title">消消乐</div>
-	</a>
-	<a href="xygsz/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('xygsz/icon.png');"></div>
-		<div class="game-title">下一个数字</div>
-	</a>
-	<a href="yigedoubunengsi/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('yigedoubunengsi/icon.png');"></div>
-		<div class="game-title">一个都不能死</div>
-	</a>
-	<a href="zhsl/index.html" class="game-card">
-		<div class="game-icon" style="background-image: url('zhsl/logo.png');"></div>
-		<div class="game-title">召唤神龙</div>
-	</a>
-	<a href="yxlm/index.htm" class="game-card">
-		<div class="game-icon" style="background-image: url('yxlm/logo.png');"></div>
-		<div class="game-title">英雄联盟</div>
-	</a>
-
-</div>
-<script>
-	function searchGames() {
-		const input = document.getElementById('searchInput').value.toLowerCase();
-		const gameCards = document.querySelectorAll('.game-card');
-		gameCards.forEach(card => {
-			const title = card.querySelector('.game-title').textContent.toLowerCase();
-			if (title.includes(input)) {
-				card.style.display = '';
-			} else {
-				card.style.display = 'none';
-			}
-		});
-	}
-
-	function handleKeyDown(event) {
-		if (event.key === 'Enter') {
-			searchGames();
+	<script>
+		function searchGames() {
+			const input = document.getElementById('searchInput').value.toLowerCase();
+			const gameCards = document.querySelectorAll('.game-card');
+			
+			gameCards.forEach((card, index) => {
+				const title = card.querySelector('.game-title').textContent.toLowerCase();
+				card.style.setProperty('--i', index); // 设置动画延迟
+				
+				if (title.includes(input)) {
+					card.style.display = '';
+					// 重新触发动画
+					card.style.animation = 'none';
+					card.offsetHeight; // 触发重排
+					card.style.animation = null;
+				} else {
+					card.style.display = 'none';
+				}
+			});
 		}
-	}
-</script>
+
+		function handleKeyDown(event) {
+			if (event.key === 'Enter') {
+				searchGames();
+			}
+		}
+
+		// 初始化卡片动画延迟
+		document.addEventListener('DOMContentLoaded', () => {
+			const gameCards = document.querySelectorAll('.game-card');
+			gameCards.forEach((card, index) => {
+				card.style.setProperty('--i', index);
+			});
+		});
+	</script>
 </body>
 </html>
