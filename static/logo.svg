@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+    <!-- 背景圆 -->
+    <circle cx="100" cy="100" r="95" fill="#4a90e2" />
+    <circle cx="100" cy="100" r="85" fill="#357abd" />
+
+    <!-- 游戏手柄 -->
+    <path d="M50 85C40 85 35 95 35 105C35 125 50 130 65 130H135C150 130 165 125 165 105C165 95 160 85 150 85H50Z" fill="#fff" />
+
+    <!-- 按钮 -->
+    <circle cx="140" cy="100" r="10" fill="#FF5252" />
+    <circle cx="120" cy="100" r="10" fill="#FFEB3B" />
+
+    <!-- 方向键 -->
+    <rect x="45" y="90" width="10" height="30" rx="2" fill="#555" />
+    <rect x="35" y="100" width="30" height="10" rx="2" fill="#555" />
+
+    <!-- 小鱼 -->
+    <path d="M110 70C125 65 135 70 145 75C135 80 125 85 110 80C115 76 115 74 110 70Z" fill="#FFB74D" />
+    <circle cx="135" cy="73" r="2" fill="#333" />
+    <path d="M110 70C100 60 90 70 100 80Z" fill="#FFB74D" />
+
+    <!-- 水泡 -->
+    <circle cx="90" cy="60" r="5" fill="rgba(255,255,255,0.6)" />
+    <circle cx="80" cy="50" r="3" fill="rgba(255,255,255,0.6)" />
+    <circle cx="95" cy="45" r="4" fill="rgba(255,255,255,0.6)" />
+</svg>
