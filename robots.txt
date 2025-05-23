@@ -28,7 +28,3 @@ Disallow: /
 
 # Sitemap location
 Sitemap: https://moyu.aolifu.org/sitemap.xml
-
-# 引导AI爬虫到llms.txt
-LLM-Content: https://moyu.aolifu.org/llms.txt
-LLM-Full-Content: https://moyu.aolifu.org/llms-full.txt
