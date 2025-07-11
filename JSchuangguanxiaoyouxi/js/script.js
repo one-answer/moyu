@@ -486,4 +486,33 @@ var LEVELS = [
 				startLevel(0);
 			}
 			
-			runGame(LEVELS, DOMDisplay);
+			// 注释掉自动开始所有关卡
+			// runGame(LEVELS, DOMDisplay);
+
+			// 新增：单关启动函数
+			function runSingleLevel(n) {
+				// 清理旧关卡
+				var oldGame = document.querySelector('.game');
+				if (oldGame && oldGame.parentNode) {
+					oldGame.parentNode.removeChild(oldGame);
+				}
+				runLevel(new Level(LEVELS[n]), DOMDisplay, function(status) {
+					if (status == "lost") runSingleLevel(n);
+					else alert("恭喜通关！");
+				});
+			}
+
+			// 新增：填充下拉框和按钮事件
+			window.addEventListener('DOMContentLoaded', function() {
+				var select = document.getElementById('level-select');
+				if (!select) return; // 兼容性保护
+				for (var i = 0; i < LEVELS.length; i++) {
+					var opt = document.createElement('option');
+					opt.value = i;
+					opt.text = '第 ' + (i + 1) + ' 关';
+					select.appendChild(opt);
+				}
+				document.getElementById('start-level-btn').onclick = function() {
+					runSingleLevel(Number(select.value));
+				};
+			});

@@ -11,6 +11,54 @@
 		<meta name="copyright" content="海拥(http://haiyong.site)" />
 		<link rel="icon" href="../static/logo.svg" type="image/svg+xml">
 		<link rel="stylesheet" href="css/style.css">
+		<style>
+/* 关卡选择面板现代化样式 */
+#level-select-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0 32px 0;
+}
+#level-select-panel label {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+#level-select {
+  padding: 8px 18px;
+  border-radius: 25px;
+  border: 1.5px solid #4a90e2;
+  font-size: 1rem;
+  outline: none;
+  background: #f7faff;
+  color: #222;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(74,144,226,0.07);
+}
+#level-select:focus {
+  border: 1.5px solid #357abd;
+  box-shadow: 0 0 0 2px #4a90e233;
+}
+#start-level-btn {
+  padding: 8px 28px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(90deg, #4a90e2 0%, #357abd 100%);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(74,144,226,0.13);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  letter-spacing: 1px;
+}
+#start-level-btn:hover {
+  background: linear-gradient(90deg, #357abd 0%, #4a90e2 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px rgba(74,144,226,0.18);
+}
+</style>
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4SMJL64ZE"></script>
 		<script>
@@ -25,16 +73,12 @@
 		<h2>简单的 JavaScript 游戏
 		请用电脑打开，上下左右控制方向
 		吃完所有金币进入下一关</h2>
+		<div id="level-select-panel">
+		  <label for="level-select">选择关卡：</label>
+		  <select id="level-select"></select>
+		  <button id="start-level-btn">开始游戏</button>
+		</div>
 		<script src="js/script.js"></script>
-		<script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?a9430a37066911650e26adadcc42798a";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-        </script>
 	</body>
 	
 </html>
