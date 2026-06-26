@@ -226,7 +226,7 @@ function Lava(pos, ch) {
 		this.repeatPos = pos;
 	}
 }
-Lava.prototype.type = "Lava";
+Lava.prototype.type = "lava";
 
 function Coin(pos) {
 	this.basePos = this.pos = pos;
@@ -559,4 +559,3 @@ window.addEventListener('DOMContentLoaded', function() {
 		runSingleLevel(Number(select.value));
 	};
 });
-
