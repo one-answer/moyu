@@ -1,11 +1,8 @@
 body {
+			  margin: 0;
 			  background: #222;
-			}
-			
-			h2 {
-			  color: #ffff7f;
-			  font-family: monospace;
-			  text-align: center;
+			  background-image: radial-gradient(circle at 50% -10%, #33333f 0%, #222 45%);
+			  background-attachment: fixed;
 			}
 			
 			.background {

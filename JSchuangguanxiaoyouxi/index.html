@@ -12,51 +12,124 @@
 		<link rel="icon" href="../static/logo.svg" type="image/svg+xml">
 		<link rel="stylesheet" href="css/style.css">
 		<style>
+/* 顶部标题与说明 */
+.site-header {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 20px 0;
+  text-align: center;
+}
+.site-header h1 {
+  margin: 0;
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffe27a;
+  text-shadow: 0 2px 18px rgba(255, 210, 80, 0.25);
+}
+.site-header h1 .js-tag {
+  background: linear-gradient(90deg, #f7df1e 0%, #f0c000 100%);
+  color: #1a1a1a;
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-family: monospace;
+  margin: 0 4px;
+}
+.site-header .subtitle {
+  margin: 14px 0 0;
+  color: #b9b9c3;
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+.site-header .subtitle .hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.site-header .subtitle kbd {
+  display: inline-block;
+  min-width: 22px;
+  padding: 2px 7px;
+  margin: 0 1px;
+  border-radius: 6px;
+  background: #33333c;
+  border: 1px solid #4a4a55;
+  border-bottom-width: 2px;
+  color: #f0f0f5;
+  font-family: monospace;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
 /* 关卡选择面板现代化样式 */
 #level-select-panel {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin: 24px 0 32px 0;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: fit-content;
+  max-width: 90%;
+  margin: 28px auto 36px;
+  padding: 16px 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 #level-select-panel label {
-  font-size: 1.1rem;
-  color: #333;
-  font-weight: 500;
+  font-size: 1rem;
+  color: #d6d6e0;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 #level-select {
-  padding: 8px 18px;
-  border-radius: 25px;
-  border: 1.5px solid #4a90e2;
-  font-size: 1rem;
+  padding: 9px 38px 9px 18px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(74, 144, 226, 0.5);
+  font-size: 0.98rem;
   outline: none;
-  background: #f7faff;
+  background-color: #f7faff;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%234a90e2' d='M1 1l5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
   color: #222;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   transition: border 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(74,144,226,0.07);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 #level-select:focus {
   border: 1.5px solid #357abd;
-  box-shadow: 0 0 0 2px #4a90e233;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
 }
 #start-level-btn {
-  padding: 8px 28px;
-  border-radius: 25px;
+  padding: 9px 30px;
+  border-radius: 12px;
   border: none;
-  background: linear-gradient(90deg, #4a90e2 0%, #357abd 100%);
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
   color: #fff;
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(74,144,226,0.13);
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(74, 144, 226, 0.35);
+  transition: filter 0.2s, transform 0.15s, box-shadow 0.2s;
   letter-spacing: 1px;
 }
 #start-level-btn:hover {
-  background: linear-gradient(90deg, #357abd 0%, #4a90e2 100%);
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 4px 16px rgba(74,144,226,0.18);
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(74, 144, 226, 0.45);
+}
+#start-level-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(74, 144, 226, 0.3);
 }
 </style>
 		<!-- Google tag (gtag.js) -->
@@ -71,11 +144,15 @@
 		<link rel="canonical" href="https://moyu.aolifu.org/JSchuangguanxiaoyouxi/">
 </head>
 	<body>
-		<h2>简单的 JavaScript 游戏
-		请用电脑打开，上下左右控制方向
-		吃完所有金币进入下一关</h2>
+		<header class="site-header">
+			<h1>简单的 <span class="js-tag">JavaScript</span> 闯关小游戏</h1>
+			<p class="subtitle">
+				<span class="hint">💻 请用电脑打开，方向键 <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> 控制移动</span><br>
+				🪙 吃完当前关卡所有金币即可进入下一关
+			</p>
+		</header>
 		<div id="level-select-panel">
-		  <label for="level-select">选择关卡：</label>
+		  <label for="level-select">选择关卡</label>
 		  <select id="level-select"></select>
 		  <button id="start-level-btn">开始游戏</button>
 		</div>
